@@ -1,0 +1,52 @@
+version: '2.4'
+
+services:
+  farm:
+    build:
+      context: ./server
+      dockerfile: ./docker/server/Dockerfile
+    volumes:
+      - ./server/app:/app
+      - ./server/data:/data
+    environment:
+      FARM_DATA: /data
+      REDIS_URL: 'redis://redis:6379/1'
+    restart: unless-stopped
+
+  celery:
+    build:
+      context: ./server
+      dockerfile: ./docker/celery/Dockerfile
+    volumes:
+      - ./server/app:/app
+      - ./server/data:/data
+    environment:
+      FARM_DATA: '/data'
+      CELERY_BROKER_URL: 'redis://redis:6379/0'
+    restart: unless-stopped
+
+  front:
+    build:
+      context: ./server
+      dockerfile: ./docker/front/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5137:80"
+
+  redis:
+    image: redislabs/redistimeseries:latest
+    ports:
+      - "6377:6379"
+    restart: unless-stopped
+    command: [ "redis-server", "--appendonly", "yes", "--loadmodule", "/usr/lib/redis/modules/redistimeseries.so" ]
+    volumes:
+      - ./server/data/redis:/data
+
+  external_redis:
+    image: redis:6.2.5-alpine
+    ports:
+      - "6378:6379"
+    restart: unless-stopped
+    command: [ "redis-server", "--appendonly", "yes" ]
+    volumes:
+      - ./server/data/external_redis:/data
