@@ -3,7 +3,7 @@
     <q-header elevated class="bg-cbs text-cbs">
       <q-toolbar class="bg-cbs text-cbs">
         <q-avatar>
-          <img src="@/assets/893.png" />
+          <img src="@/assets/crew.png" />
         </q-avatar>
         <q-toolbar-title> 893 Farm </q-toolbar-title>
         <q-tabs class="bg-cbs text-cbs" shrink>

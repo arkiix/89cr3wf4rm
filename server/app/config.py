@@ -3,9 +3,9 @@ import os
 # import validators.volgactf
 
 
-IP_MASK = '10.60.X.3' # X - increment number
-FIRST_TEAM_NUMBER = 0
-COUNT_TEAM = 10
+IP_MASK = '10.60.0.X' # X - increment number
+FIRST_TEAM_NUMBER = 1
+COUNT_TEAM = 1
 
 
 CONFIG = {
@@ -20,14 +20,14 @@ CONFIG = {
     # 'FLAG_FORMAT': r'VolgaCTF{[\w-]*\.[\w-]*\.[\w-]*}',
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
 
-    # 'SYSTEM_PROTOCOL': 'ructf_http',
-    # 'SYSTEM_URL': 'http://monitor.ructfe.org/flags',
-    # 'SYSTEM_TOKEN': '275_17fc104dd58d429ec11b4a5e82041cd2',
+    'SYSTEM_PROTOCOL': 'ructf_http',
+    'SYSTEM_URL': 'http://10.60.0.1:8930/flags', # 'http://monitor.ructfe.org/flags',
+    'SYSTEM_TOKEN': '',
 
-    'SYSTEM_PROTOCOL': 'forcad_tcp',
-    'SYSTEM_HOST': '10.10.10.10',
-    'SYSTEM_PORT': '31337',
-    'TEAM_TOKEN': '4fdcd6e54faa8991',
+    # 'SYSTEM_PROTOCOL': 'forcad_tcp',
+    # 'SYSTEM_HOST': '10.10.10.10',
+    # 'SYSTEM_PORT': '31337',
+    # 'TEAM_TOKEN': '4fdcd6e54faa8991',
     # 'SYSTEM_PROTOCOL': 'volgactf',
     # 'SYSTEM_VALIDATOR': 'volgactf',
     # 'SYSTEM_HOST': 'final.volgactf.ru',
@@ -50,6 +50,6 @@ CONFIG = {
     'SERVER_PASSWORD': '1234',
 
     # For all time-related operations
-    'TIMEZONE': 'Europe/Moscow',
-    # 'TIMEZONE': 'Etc/GMT-6',
+    # 'TIMEZONE': 'Europe/Moscow',
+    'TIMEZONE': 'Etc/GMT-6',
 }
