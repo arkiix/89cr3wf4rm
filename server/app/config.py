@@ -3,9 +3,10 @@ import os
 # import validators.volgactf
 
 
-IP_MASK = '10.60.0.X' # X - increment number
+IP_MASK = '10.60.{}.2'  # {} - increment number
 FIRST_TEAM_NUMBER = 1
-COUNT_TEAM = 1
+LAST_TEAM_NUMBER = 20
+EXCLUSION_FROM_THE_ATTACK = (999, )  # Numbers of teams excluded from the attack
 
 
 CONFIG = {
@@ -13,8 +14,9 @@ CONFIG = {
     'DEBUG': os.getenv('DEBUG') == '1',
 
     'TEAMS': {
-        f'Team #{i}': IP_MASK.lower().replace('x', str(i))
-        for i in range(FIRST_TEAM_NUMBER, FIRST_TEAM_NUMBER + COUNT_TEAM)
+        f'Team #{i}': IP_MASK.format(str(i))
+        for i in range(FIRST_TEAM_NUMBER, LAST_TEAM_NUMBER + 1)
+        if i not in EXCLUSION_FROM_THE_ATTACK
     },
     # 'FLAG_FORMAT': r'CTF\.Moscow\{[a-zA-Z\.0-9_-]+\}',
     # 'FLAG_FORMAT': r'VolgaCTF{[\w-]*\.[\w-]*\.[\w-]*}',
